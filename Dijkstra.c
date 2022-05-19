@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "Dijkstra.h"
 
-//#define DB
+// 디버깅을 위한 상수
+//#define DB 
 
 // 다익스트라 알고리즘
 // 인자 : 정점의 개수, 인접행렬, 엣지 집합 포인터, 각 정점으로 가는 최단거리를 저장하기 위한 배열
@@ -14,7 +15,7 @@ void dijkstra(int n, int W[][VERTEX_MAX], edge_set* F, int path_length[]) {
 	// i번째 노드로 가는 최단 경로의 길이를 저장하는 배열
 	int* length = (int*)malloc(sizeof(int) * n);
 
-	// 시작 노드는 0번째 노드로 함
+	// 시작 노드는 0번째 노드
 	for (int i = 1; i < n; i++) {
 		touch[i] = 0;
 		length[i] = W[0][i];
@@ -47,10 +48,10 @@ void dijkstra(int n, int W[][VERTEX_MAX], edge_set* F, int path_length[]) {
 		edge* e = create_edge(touch[near_v], near_v, W[touch[near_v]][near_v]); 
 		insert_to_edge_set(F, e); 
 
-		// touch[i]번째 노드를 마지막으로 경유했을 때, 최단거리가 가장 작아지는 노드의 인덱스를 찾음
+		// near_v로 가는 최단거리를 배열에 저장
 		path_length[near_v] = path_length[touch[near_v]] + W[touch[near_v]][near_v]; 
 
-		// 모든 목적지 정점에 대해서, near_v번째 노드를 마지막으로 거쳐서 가는 것이 더 짧은지를 확인하고 최단거리를 갱신함
+		// 모든 목적지 정점에 대해서, near_v번째 노드를 마지막으로 거쳐서 가는 것이 더 짧은지를 확인하고 최단거리를 갱신
 		for (int i = 1; i < n; i++) {
 			if (length[near_v] + W[near_v][i] < length[i]) {
 				length[i] = length[near_v] + W[near_v][i];
@@ -58,7 +59,7 @@ void dijkstra(int n, int W[][VERTEX_MAX], edge_set* F, int path_length[]) {
 				path_length[i] = length[i];
 			}
 		}
-		length[near_v] = -1; // near_v번째 노드가 최단경로에 포함됨
+		length[near_v] = -1; // near_v번째 노드를 최단경로에 포함
 	}
 
 	free(touch);
