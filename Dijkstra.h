@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #define INF 1000000
 #define VERTEX_MAX 50
 
 struct edge {
-	int start_v; // ¿§ÁöÀÇ ½ÃÀÛÁ¡
+	int start_v; // ì—£ì§€ì˜ ì‹œì‘ì 
 	int end_v;   
 	int weight;
 };
