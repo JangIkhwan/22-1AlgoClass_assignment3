@@ -23,14 +23,14 @@ int test_case2[5][5] = {
 	{3, INF, INF, INF, 0}
 };
 
-int test_case3[7][7] = { 
-	{0, 7, INF, INF, 3, 10, INF},
-	{7, 0, 4, 10, 2, 6, INF},
-	{INF, 4, 0, 2, INF, INF, INF},
-	{INF, 10, 2, 0, 11, 9, 4},
-	{3, 2, INF, 11, 0, INF, 5},
-	{10, 6, INF, 9, INF, 0, INF},
-	{INF, INF, INF, 4, 5, INF, 0}
+int test_case3[7][7] = {
+   {0, 7, INF, INF, 3, 10, INF},
+   {7, 0, 4, 10, 2, 6, INF},
+   {INF, 4, 0, 2, INF, INF, INF},
+   {INF, 10, 2, 0, 11, 9, 4},
+   {3, 2, INF, 11, 0, INF, 5},
+   {10, 6, INF, 9, INF, 0, INF},
+   {INF, INF, INF, 4, 5, INF, 0}
 };
 
 // Dijkstra 알고리즘을 테스트하는 함수
@@ -47,7 +47,7 @@ void test_dijkstra(int n, int W[][VERTEX_MAX]) {
 
 	// 결과로 얻은 최단 경로와 엣지 집합을 출력
 	printf("In path_length[],\n");
-	for (int i = 0; i < n; i++) {
+	for (int i = 1; i < n; i++) {
 		printf("shortest path to the v%d : %d\n", i, path_length[i]);
 	}
 
