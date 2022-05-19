@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include "Dijkstra.h"
 
-// 디버깅 용
-//#define DB 
-
 // 다익스트라 알고리즘
 // 인자 : 정점의 개수, 인접행렬, 엣지 집합 포인터, 각 정점으로 가는 최단거리를 저장하기 위한 배열
 void dijkstra(int n, int W[][VERTEX_MAX], edge_set* F, int path_length[]) {
@@ -19,7 +16,6 @@ void dijkstra(int n, int W[][VERTEX_MAX], edge_set* F, int path_length[]) {
 	for (int i = 1; i < n; i++) {
 		touch[i] = 0;
 		length[i] = W[0][i];
-		//path_length[i] = length[i];
 	}
 
 	init_edge_set(F);
@@ -27,10 +23,6 @@ void dijkstra(int n, int W[][VERTEX_MAX], edge_set* F, int path_length[]) {
 	for (int k = 0; k < n - 1; k++) {
 		int min = INF;    // length에 저장된 값 중 최솟값을 저장하는 변수
 		int near_v;       // length에 저장된 값 중 최솟값을 가지는 노드의 인덱스를 저장하는 변수
-
-#ifdef DB
-		print_array(length, n);
-#endif
 
 		// touch[i]번째 노드를 마지막으로 경유했을 때, 최단거리를 갖는 노드의 인덱스를 찾음
 		for (int i = 1; i < n; i++) {
@@ -40,15 +32,9 @@ void dijkstra(int n, int W[][VERTEX_MAX], edge_set* F, int path_length[]) {
 			}
 		}
 
-#ifdef DB
-		printf("near_v : %d, touch[near_v] : %d\n", near_v, touch[near_v]);
-#endif
-
 		// touch[near_v]번째 노드와 near_v번째 노드를 잇는 엣지를 생성해서 이를 엣지 집합에 넣음
 		edge* e = create_edge(touch[near_v], near_v, W[touch[near_v]][near_v]); 
 		insert_to_edge_set(F, e); 
-
-		//path_length[near_v] = path_length[touch[near_v]] + W[touch[near_v]][near_v]; 
 
 		// 모든 목적지 정점에 대해서, near_v번째 노드를 마지막으로 거쳐서 가는 것이 더 짧은지를 확인하고 최단거리를 갱신
 		for (int i = 1; i < n; i++) {
@@ -125,15 +111,6 @@ void delete_edge_set(edge_set* set) {
 	free(set->data);
 	free(set);
 }
-
-// 배열을 출력하는 함수 (디버깅용)
-void print_array(int arr[], int size) {
-	for (int i = 0; i < size; i++) {
-		printf("%d ", arr[i]);
-	}
-	printf("\n");
-}
-
 
 
 
