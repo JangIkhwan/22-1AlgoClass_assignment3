@@ -46,7 +46,7 @@ void dijkstra(int n, int W[][VERTEX_MAX], edge_set* F, int path_length[]) {
 		}
 		
 		path_length[near_v] = length[near_v]; // near_v로 가는 최단거리를 배열에 저장
-		length[near_v] = -1; // near_v번째 노드가 F에 추가되었음
+		length[near_v] = -1; // near_v번째 노드를 다음 탐색에서 제외함
 	}
 
 	free(touch);
